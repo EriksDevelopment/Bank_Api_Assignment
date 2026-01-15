@@ -71,7 +71,7 @@ namespace Bank.Core.Services
                 Duration = dto.Duration,
                 Status = loan.Status,
                 EndDate = loan.Date.AddMonths(dto.Duration),
-                PaymentPerMonth = dto.Amount / dto.Duration
+                PaymentPerMonth = decimal.Round(dto.Amount / dto.Duration, 2)
             };
         }
     }
