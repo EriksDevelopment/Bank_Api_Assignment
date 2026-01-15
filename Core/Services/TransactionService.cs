@@ -38,6 +38,9 @@ namespace Bank.Core.Services
 
             var transaction = await _transactionRepo.GetTransactionByAccountIdAsync(account.AccountId);
 
+            if (transaction.Count == 0)
+                throw new ArgumentException("No transactions recieved or created.");
+
 
             return transaction.Select(t => new ShowAllTransactionsResponseDto
             {

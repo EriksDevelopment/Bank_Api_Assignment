@@ -29,14 +29,17 @@ namespace Bank.Core.Services
             if (account == null)
                 throw new ArgumentException("Account not found.");
 
+            if (dto.Duration <= 0)
+                throw new ArgumentException("Loan duration must be atleast 1 month.");
+
             var payment = dto.Amount / dto.Duration;
 
             var loan = new Loan
             {
                 AccountId = account.AccountId,
-                Date = DateOnly.FromDateTime(DateTime.UtcNow),
                 Amount = dto.Amount,
                 Duration = dto.Duration,
+                Date = DateOnly.FromDateTime(DateTime.UtcNow),
                 Payments = payment,
                 Status = "Running"
             };
