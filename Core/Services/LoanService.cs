@@ -44,6 +44,7 @@ namespace Bank.Core.Services
                 Status = "Running"
             };
 
+
             account.Balance += dto.Amount;
 
             var transaction = new Transaction
@@ -54,6 +55,8 @@ namespace Bank.Core.Services
                 Operation = "Loan",
                 Amount = dto.Amount,
                 Balance = account.Balance,
+                Symbol = "LN",
+                Bank = "Nordea",
                 Account = account.AccountNumber
             };
 
@@ -61,11 +64,14 @@ namespace Bank.Core.Services
 
             return new AdminCreateCustomerLoanResponseDto
             {
-                Message = "Loan created successfully.",
+                Message = $"Loan created successfully.",
                 ToAccountNumber = account.AccountNumber,
                 Amount = dto.Amount,
                 Date = loan.Date,
-                Status = loan.Status
+                Duration = dto.Duration,
+                Status = loan.Status,
+                EndDate = loan.Date.AddMonths(dto.Duration),
+                PaymentPerMonth = dto.Amount / dto.Duration
             };
         }
     }

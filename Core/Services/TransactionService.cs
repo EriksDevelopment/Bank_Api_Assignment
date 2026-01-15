@@ -86,6 +86,8 @@ namespace Bank.Core.Services
                 Type = "Debit",
                 Operation = "Collection from Another Bank",
                 Date = transactionDate,
+                Symbol = "TRF",
+                Bank = "Nordea",
                 Account = toAccount.AccountNumber
             };
 
@@ -97,6 +99,8 @@ namespace Bank.Core.Services
                 Type = "Credit",
                 Operation = "Collection from Another Bank",
                 Date = transactionDate,
+                Symbol = "TRF",
+                Bank = "Nordea",
                 Account = fromAccount.AccountNumber
             };
 
