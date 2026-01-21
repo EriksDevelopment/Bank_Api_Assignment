@@ -9,6 +9,7 @@ using Bank.Core.Interfaces;
 using Bank.Core.Services.JwtServices;
 using Bank.Core.Services;
 using Bank.Data.Interfaces;
+using Bank.Extensions;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -38,17 +39,7 @@ builder.Services.AddAuthorization();
 builder.Services.AddDbContext<BankDbContext>(options =>
    options.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnection")));
 
-builder.Services.AddScoped<IAdminRepository, AdminRepository>();
-builder.Services.AddScoped<IAdminService, AdminService>();
-builder.Services.AddScoped<ICustomerRepository, CustomerRepository>();
-builder.Services.AddScoped<ICustomerService, CustomerService>();
-builder.Services.AddScoped<ITransactionRepository, TransactionRepository>();
-builder.Services.AddScoped<ITransactionService, TransactionService>();
-builder.Services.AddScoped<IAccountRepository, AccountRepository>();
-builder.Services.AddScoped<IAccountService, AccountService>();
-builder.Services.AddScoped<ILoanRepository, LoanRepository>();
-builder.Services.AddScoped<ILoanService, LoanService>();
-builder.Services.AddScoped<IDispositionRepository, DispositionRepository>();
+builder.Services.AddDomainServices();
 
 
 builder.Services.AddControllers();

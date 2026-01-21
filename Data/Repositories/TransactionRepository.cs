@@ -1,4 +1,4 @@
-using Bank.Data.Entities;
+using Bank.Data.Models;
 using Bank.Data.Interfaces;
 using Microsoft.EntityFrameworkCore;
 

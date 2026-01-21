@@ -1,7 +1,7 @@
 using Bank.Core.Interfaces;
 using Bank.Core.Services.JwtServices;
 using Bank.Data.Dtos;
-using Bank.Data.Entities;
+using Bank.Data.Models;
 using Bank.Data.Interfaces;
 
 namespace Bank.Core.Services
