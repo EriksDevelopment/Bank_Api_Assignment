@@ -34,7 +34,7 @@ namespace Bank.Core.Services
                 throw new ArgumentException("Email and password are required.");
 
             var customer = await _customerRepo.GetByEmailAsync(dto.Email);
-            if (customer == null || customer.Password != dto.Password)
+            if (customer == null || !BCrypt.Net.BCrypt.Verify(dto.Password, customer.Password))
                 throw new UnauthorizedAccessException("Invalid credentials.");
 
             var token = _jwtService.GenerateToken(customer.CustomerId, "Customer");
@@ -64,6 +64,8 @@ namespace Bank.Core.Services
             if (emailExists != null)
                 throw new ArgumentException("Email already exists.");
 
+            var hashedPassword = BCrypt.Net.BCrypt.HashPassword(dto.Password);
+
 
             var customer = new Customer
             {
@@ -79,7 +81,7 @@ namespace Bank.Core.Services
                 Telephonecountrycode = dto.Telephonecountrycode,
                 Telephonenumber = dto.Telephonenumber,
                 Emailaddress = dto.Emailaddress,
-                Password = dto.Password
+                Password = hashedPassword
             };
 
             customer = await _customerRepo.CreateCustomerAsync(customer);
