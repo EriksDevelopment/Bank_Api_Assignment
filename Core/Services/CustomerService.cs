@@ -60,6 +60,10 @@ namespace Bank.Core.Services
                 string.IsNullOrWhiteSpace(dto.Password))
                 throw new ArgumentException("All required fields must be filled in. The following fields are optional: Birthday, TelephoneCountryCode, TelephoneNumber.");
 
+            var emailExists = await _customerRepo.GetByEmailAsync(dto.Emailaddress);
+            if (emailExists != null)
+                throw new ArgumentException("Email already exists.");
+
 
             var customer = new Customer
             {

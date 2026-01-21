@@ -1,4 +1,4 @@
-﻿namespace Bank.Data.Entities;
+﻿namespace Bank.Data.Models;
 
 public partial class Customer
 {

@@ -4,11 +4,7 @@ using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.IdentityModel.Tokens;
 using Microsoft.OpenApi.Models;
 using Bank.Data;
-using Bank.Data.Repositories;
-using Bank.Core.Interfaces;
 using Bank.Core.Services.JwtServices;
-using Bank.Core.Services;
-using Bank.Data.Interfaces;
 using Bank.Extensions;
 
 var builder = WebApplication.CreateBuilder(args);

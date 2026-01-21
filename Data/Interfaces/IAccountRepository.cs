@@ -1,4 +1,4 @@
-using Bank.Data.Entities;
+using Bank.Data.Models;
 
 namespace Bank.Data.Interfaces
 {
