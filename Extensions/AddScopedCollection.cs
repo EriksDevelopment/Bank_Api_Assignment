@@ -2,12 +2,13 @@ using Bank.Data.Interfaces;
 using Bank.Data.Repositories;
 using Bank.Core.Interfaces;
 using Bank.Core.Services;
+using Bank.Core.Services.JwtServices;
 
 namespace Bank.Extensions
 {
-    public static class ServiceCollectionExtensions
+    public static class AddScopedCollection
     {
-        public static IServiceCollection AddDomainServices(this IServiceCollection services)
+        public static IServiceCollection AddScopedServices(this IServiceCollection services)
         {
             services.AddScoped<IAdminRepository, AdminRepository>();
             services.AddScoped<IAdminService, AdminService>();
@@ -25,6 +26,8 @@ namespace Bank.Extensions
             services.AddScoped<ILoanService, LoanService>();
 
             services.AddScoped<IDispositionRepository, DispositionRepository>();
+
+            services.AddScoped<JwtService>();
 
             return services;
         }
