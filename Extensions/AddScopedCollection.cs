@@ -2,7 +2,7 @@ using Bank.Data.Interfaces;
 using Bank.Data.Repositories;
 using Bank.Core.Interfaces;
 using Bank.Core.Services;
-using Bank.Core.Services.JwtServices;
+using Bank.Core.Security;
 
 namespace Bank.Extensions
 {

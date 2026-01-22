@@ -3,7 +3,7 @@ using System.Security.Claims;
 using System.Text;
 using Microsoft.IdentityModel.Tokens;
 
-namespace Bank.Core.Services.JwtServices
+namespace Bank.Core.Security
 {
     public class JwtService
     {

@@ -1,5 +1,5 @@
 using Bank.Core.Interfaces;
-using Bank.Core.Services.JwtServices;
+using Bank.Core.Security;
 using Bank.Data.Dtos;
 using Bank.Data.Models;
 using Bank.Data.Interfaces;
