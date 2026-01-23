@@ -8,6 +8,7 @@ namespace Bank.Data.Dtos
 
     public class AdminLoginResponseDto
     {
-        public string AccessToken { get; set; } = null!;
+        public string Token { get; set; } = null!;
+        public DateTime ExpiresAt { get; set; }
     }
 }

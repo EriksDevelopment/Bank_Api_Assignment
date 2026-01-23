@@ -31,11 +31,12 @@ namespace Bank.Core.Services
                 throw new UnauthorizedAccessException("Invalid credentials");
 
 
-            var token = _jwtService.GenerateToken(admin.Admin_Id, "Admin");
+            var (token, expiresAt) = _jwtService.GenerateToken(admin.Admin_Id, "Admin");
 
             return new AdminLoginResponseDto
             {
-                AccessToken = token
+                Token = token,
+                ExpiresAt = expiresAt
             };
         }
     }

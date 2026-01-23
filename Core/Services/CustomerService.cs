@@ -37,11 +37,12 @@ namespace Bank.Core.Services
             if (customer == null || !BCrypt.Net.BCrypt.Verify(dto.Password, customer.Password))
                 throw new UnauthorizedAccessException("Invalid credentials.");
 
-            var token = _jwtService.GenerateToken(customer.CustomerId, "Customer");
+            var (token, expiresAt) = _jwtService.GenerateToken(customer.CustomerId, "Customer");
 
             return new CustomerLoginResponseDto
             {
-                AccessToken = token
+                Token = token,
+                ExpiresAt = expiresAt
             };
         }
 

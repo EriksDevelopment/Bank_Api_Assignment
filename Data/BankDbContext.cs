@@ -14,6 +14,7 @@ public partial class BankDbContext : DbContext
     public virtual DbSet<Account> Accounts { get; set; }
 
     public virtual DbSet<AccountType> AccountTypes { get; set; }
+
     public virtual DbSet<Admin> Admins { get; set; }
 
     public virtual DbSet<Card> Cards { get; set; }

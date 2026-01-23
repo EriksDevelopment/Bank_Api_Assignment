@@ -14,11 +14,14 @@ namespace Bank.Core.Security
             _configuration = configuration;
         }
 
-        public string GenerateToken(int customerId, string role)
+        public (string Token, DateTime ExpiresAt) GenerateToken(int customerId, string role)
         {
             var key = _configuration["Jwt:Key"];
             if (string.IsNullOrEmpty(key))
                 throw new InvalidOperationException("JWT key missing");
+
+            var tokenValidityMins = _configuration.GetValue<int>("Jwt:TokenValidityMins");
+            var expiresAt = DateTime.UtcNow.AddMinutes(tokenValidityMins);
 
             var claims = new[]
             {
@@ -29,9 +32,7 @@ namespace Bank.Core.Security
             var tokenDescriptor = new SecurityTokenDescriptor
             {
                 Subject = new ClaimsIdentity(claims),
-                Expires = DateTime.UtcNow.AddMinutes(
-                    _configuration.GetValue<int>("Jwt:TokenValidityMins")
-                ),
+                Expires = expiresAt,
                 Issuer = _configuration["Jwt:Issuer"],
                 Audience = _configuration["Jwt:Audience"],
                 SigningCredentials = new SigningCredentials(
@@ -41,7 +42,10 @@ namespace Bank.Core.Security
             };
 
             var handler = new JwtSecurityTokenHandler();
-            return handler.WriteToken(handler.CreateToken(tokenDescriptor));
+
+            var token = handler.WriteToken(handler.CreateToken(tokenDescriptor));
+
+            return (token, expiresAt);
         }
     }
 }
