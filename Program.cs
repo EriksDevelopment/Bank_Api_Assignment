@@ -27,6 +27,7 @@ if (app.Environment.IsDevelopment())
         c.RoutePrefix = string.Empty;
     });
 }
+
 app.UseRouting();
 
 app.UseAuthentication();
